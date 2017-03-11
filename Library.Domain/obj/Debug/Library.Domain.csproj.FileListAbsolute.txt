@@ -1,0 +1,5 @@
+c:\users\lucas\documents\visual studio 2015\Projects\Library\Library.Domain\bin\Debug\Library.Domain.dll
+c:\users\lucas\documents\visual studio 2015\Projects\Library\Library.Domain\bin\Debug\Library.Domain.pdb
+c:\users\lucas\documents\visual studio 2015\Projects\Library\Library.Domain\obj\Debug\Library.Domain.csprojResolveAssemblyReference.cache
+c:\users\lucas\documents\visual studio 2015\Projects\Library\Library.Domain\obj\Debug\Library.Domain.dll
+c:\users\lucas\documents\visual studio 2015\Projects\Library\Library.Domain\obj\Debug\Library.Domain.pdb

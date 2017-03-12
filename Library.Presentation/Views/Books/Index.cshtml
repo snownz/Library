@@ -9,15 +9,6 @@
     <!-- END PORTLET-->
 </div>
 <div class="col-md-12 col-sm-12">
-    <div class="col-md-6 col-sm-12">
-        <div class="portlet light">
-            @{ Html.RenderPartial("_PluginNewBook");}
-        </div>
-    </div>
-    <div class="col-md-6 col-sm-12">
-        <div class="portlet light">
-            @{ Html.RenderPartial("_PluginAdmin");}
-        </div>
-    </div>
+    @{ Html.RenderPartial("_PluginAdmin");}
 </div>
 <script src="~/Scripts/specifc/SystemPages.js" type="text/javascript"></script>

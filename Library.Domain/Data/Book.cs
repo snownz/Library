@@ -27,25 +27,23 @@ namespace Library.Domain.Data
         [StringLength(4000)] 
         public virtual string Description { get; set; }
         [StringLength(4000)]
-        public virtual byte[] Image { get; set; }
+        public virtual string Image { get; set; }
 
         public virtual int Number { get; set; }
         public virtual int Year { get; set; }
         public virtual int PagesNumber { get; set; }
         public virtual bool SpecialEdition { get; set; }
 
-        public Language Language { get; set; }
-        public PublishingCompany Company { get; set; }
-        public Author Author { get; set; }
-
-        public ICollection<BookRating> Rating { get; set; }
-
+        public virtual Language Language { get; set; }
+        public virtual PublishingCompany Company { get; set; }
+        public virtual Author Author { get; set; }
+       
         [NotMapped]
         public string GetText
         {
             get
             {
-                throw new NotImplementedException();
+                return $"{Name} {Description} {Year} {Company.Name} {Author.Name} {Language.Descricao}";
             }
         }
     }

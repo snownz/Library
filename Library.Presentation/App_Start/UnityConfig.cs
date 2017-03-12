@@ -38,7 +38,6 @@ namespace Library.Presentation.App_Start
         {
             // Repositorios
             container.RegisterType<IRepository<Book>, Repository<Book>>();
-            container.RegisterType<IRepository<BookRating>, Repository<BookRating>>();
             container.RegisterType<IRepository<Language>, Repository<Language>>();
             container.RegisterType<IRepository<PublishingCompany>, Repository<PublishingCompany>>();
             container.RegisterType<IRepository<Author>, Repository<Author>>();

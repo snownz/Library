@@ -28,7 +28,7 @@ namespace Library.Domain.Data
         {
             get
             {
-                throw new NotImplementedException();
+                return Descricao;
             }
         }
     }

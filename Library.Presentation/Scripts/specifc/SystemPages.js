@@ -30,8 +30,24 @@ function loadSpecialBooks() {
     .success(function (data) { $('#partial-special-books').html(data); wait.done($('#partial-special-books')); });
 }
 
-function configureBookButons(){
+function configureBookButons() {
+
+    $('#redirectDashBoard').unbind("click");
     $("#redirectDashBoard").click(function () {
         window.location.href = baseUrl + "DashBoard"
+    });
+
+    $('a[data-type="pageList"]').unbind("click");
+    $('a[data-type="pageList"]').click(function () {
+        console.log("pagina");
+        var controller = $(this).attr("data-controller");
+        var action = $(this).attr("data-action");
+        var page = $(this).attr("data-page");
+        var container = $(this).attr("data-container");
+
+        $.post(baseUrl + controller + "/" + action, { search: null, page: page, action: true })
+            .done(function (data) {
+                $("#" + container).html(data);
+            });
     });
 }

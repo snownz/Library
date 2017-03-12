@@ -43,7 +43,7 @@ namespace Library.Domain.Service
             var m = _repository.GetById(model.Id);
             if (m != null)
             {
-                await _repository.UpdateAsync(model);
+                await _repository.SaveAsync(model);
             }
             else
             {

@@ -1,6 +1,6 @@
 ﻿@model Library.Presentation.Models.AuthorViewModel
 
-@Html.AntiForgeryToken()
+
 @using (Html.BeginForm("", "", null, FormMethod.Post, new Dictionary<string, object> { { "data-type", "frm" }, { "data-controller", "Author" }, { "data-New", Model.New } }))
 {    
     <div class="form-horizontal">

@@ -24,14 +24,15 @@ namespace Library.Presentation.App_Start.Profiles
             CreateMap<BookViewModel, Book>()
                 .ForMember(x => x.Id, opt => opt.MapFrom(x => x.ID))
                 .ForMember(x => x.Name, opt => opt.MapFrom(x => x.Name))
+                .ForMember(x => x.Description, opt => opt.MapFrom(x => x.Description))
                 .ForMember(x => x.SpecialEdition, opt => opt.MapFrom(x => x.Special))
-                .ForMember(x => x.Image, opt => opt.MapFrom(x => Convert.FromBase64String(x.Image)))
-                .ForMember(x => x.Company, opt => opt.MapFrom(x => x.Company))
-                .ForMember(x => x.Author, opt => opt.MapFrom(x => x.Author))
+                .ForMember(x => x.Image, opt => opt.MapFrom(x => x.Image))
+                .ForMember(x => x.Id_Editora, opt => opt.MapFrom(x => x.ID_Company))
+                .ForMember(x => x.Id_Autor, opt => opt.MapFrom(x => x.ID_Author))
                 .ForMember(x => x.PagesNumber, opt => opt.MapFrom(x => x.PagesNumber))
                 .ForMember(x => x.Number, opt => opt.MapFrom(x => x.Number))
                 .ForMember(x => x.Year, opt => opt.MapFrom(x => x.Year))
-                .ForMember(x => x.Language, opt => opt.MapFrom(x => x.Language));
+                .ForMember(x => x.Id_Idioma, opt => opt.MapFrom(x => x.ID_Language));
         }
     }
 }

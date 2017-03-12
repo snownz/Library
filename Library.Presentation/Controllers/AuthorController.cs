@@ -29,8 +29,7 @@ namespace Library.Presentation.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public async Task New(AuthorViewModel model)
         {
             if (ModelState.IsValid)
@@ -57,8 +56,7 @@ namespace Library.Presentation.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public async Task Update(AuthorViewModel model)
         {
             if (ModelState.IsValid)

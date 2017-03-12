@@ -5,6 +5,7 @@ using Library.Presentation.Models;
 using Library.Presentation.Models.Pagination;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -19,7 +20,7 @@ namespace Library.Presentation.Controllers
         private readonly ICompany _serviceC;
         private readonly ILanguage _serviceL;
 
-        private readonly BookPagination book;
+        private BookPagination book;
 
         public BooksController(ILibrary _service, IAuthor _serviceA, ICompany _serviceC, ILanguage _serviceL)
         {
@@ -39,14 +40,25 @@ namespace Library.Presentation.Controllers
             return View();
         }
 
-        public ActionResult PartialSpecialBooks(int? page = 1)
+        public ActionResult PartialSpecialBooks(string search = null, int page = 1, bool action = false)
         {
-            return PartialView();
+            book = new BookPagination
+            (
+                () => { return _service.ListAll().Where(x=>x.SpecialEdition).OrderBy(x => x.Name); }
+            );
+            book.Book.QuantidadeMaxima = 4;
+            book.Book.PaginaAtual = page;
+            book.Book.Busca = search;
+            ViewBag.Action = action;
+            return PartialView(book);
         }
 
-        public ActionResult PartialBooks(int? page = 1)
+        public ActionResult PartialBooks(string search = null, int page = 1, bool action = false)
         {
-            return PartialView();
+            book.Book.PaginaAtual = page;
+            book.Book.Busca = search;
+            ViewBag.Action = action;
+            return PartialView(book);
         }
 
         /// <summary>
@@ -54,8 +66,7 @@ namespace Library.Presentation.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public async Task New(BookViewModel model)
         {
             if (ModelState.IsValid)
@@ -82,8 +93,7 @@ namespace Library.Presentation.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public async Task Update(BookViewModel model)
         {
             if (ModelState.IsValid)

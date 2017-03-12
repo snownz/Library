@@ -102,7 +102,6 @@
   <ItemGroup>
     <Compile Include="Data\Author.cs" />
     <Compile Include="Data\Book.cs" />
-    <Compile Include="Data\BookRating.cs" />
     <Compile Include="Data\PublishingCompany.cs" />
     <Compile Include="Data\Language.cs" />
     <Compile Include="Data\ITable.cs" />

@@ -21,33 +21,20 @@ namespace Library.Domain.DbConfig
             ConfigureLanguages(modelBuilder);
             ConfigureCompany(modelBuilder);
             ConfigureAuthor(modelBuilder);
-            ConfigureBookRating(modelBuilder);
-        }
-
-        private void ConfigureBookRating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<BookRating>().ToTable("BookRating");
-            modelBuilder.Entity<BookRating>()
-               .HasRequired(x => x.Book)
-               .WithMany(x => x.Rating)
-               .HasForeignKey(x => x.Id_Book);
         }
 
         private void ConfigureAuthor(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Author>().ToTable("Author");
         }
-
         private void ConfigureCompany(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PublishingCompany>().ToTable("PublishingCompany");
         }
-
         private void ConfigureLanguages(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Language>().ToTable("Language");
         }
-
         private void ConfigureBooks(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Book>().ToTable("Book");
@@ -69,6 +56,5 @@ namespace Library.Domain.DbConfig
         public virtual DbSet<PublishingCompany> PublishingCompany { get; set; }
         public virtual DbSet<Language> Language { get; set; }
         public virtual DbSet<Author> Author { get; set; }
-        public virtual DbSet<BookRating> BookRating { get; set; }
     }
 }

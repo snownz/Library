@@ -30,8 +30,7 @@ namespace Library.Presentation.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public async Task New(CompanyViewModel model)
         {
             if (ModelState.IsValid)
@@ -58,8 +57,7 @@ namespace Library.Presentation.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public async Task Update(CompanyViewModel model)
         {
             if (ModelState.IsValid)

@@ -88,16 +88,16 @@ function configureButtons() {
         });
     });
 
-    $('a[data-type="txtList"]').unbind("keyup");
-    $('a[data-type="txtList"]').keyup(function (e) {
-        console.log("pesquisa");
-        if (!pressed && e.keyCode == 13) {
+    $('input[data-type="txtList"]').unbind("keypress");
+    $('input[data-type="txtList"]').keypress(function (e) {
+        console.log(e.keyCode);
+        if (e.keyCode == 13) {
             var controller = $(this).attr("data-controller");
             var action = "ListAll";
             var search = $(this).val();
             var container = $(this).attr("data-container");
 
-            $.post(baseUrl + controller + "/" + action, { search: search })
+            $.post(baseUrl + controller + "/" + action, { search: search, page: 1, action: true })
             .done(function (data) {
                 $("#" + container).html(data);
             });
@@ -132,11 +132,8 @@ function ConfigureForms(){
             action = "Update";
         }
 
-        token = $('input[name="__RequestVerificationToken"]').val();
-
-        var data = { model: $(this).serializeArray(), __RequestVerificationToken: token };
-        console.log($(this).serializeArray());
-
+        var data = JSON.parse(JSON.stringify($(this).serializeArray()));
+        
         $.post(baseUrl + controller + "/" + action, data)
         .done(function (data) {
             library.configureMessage("success", "Registro Incluido com Sucesso!");

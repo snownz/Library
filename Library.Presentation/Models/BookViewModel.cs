@@ -13,6 +13,9 @@ namespace Library.Presentation.Models
         {
             ID = -1;
             New = true;
+            ID_Author = 1;
+            ID_Company = 1;
+            ID_Language = 1;
         }
         public int ID { get; set; }
         [DisplayName("Autor")]
@@ -27,12 +30,13 @@ namespace Library.Presentation.Models
         [DisplayName("Nome")]
         [Required(ErrorMessage = "É nescessario digitar a nome")]
         public string Name { get; set; }
+        [DisplayName("Descrição")]
+        [Required(ErrorMessage = "É nescessario digitar a descrição")]
+        public string Description { get; set; }
         [DisplayName("Especial")]
         public bool Special { get; set; }
         [DisplayName("Imagem")]
         public string Image { get; set; }
-        [DisplayName("Avaliação")]
-        public double Rate { get; set; }
         [DisplayName("Numero da Edição")]
         [Required(ErrorMessage = "É nescessario digitar a nome")]
         public int Number { get; set; }
@@ -43,9 +47,15 @@ namespace Library.Presentation.Models
         [Required(ErrorMessage = "É nescessario digitar a nome")]
         public int PagesNumber { get; set; }
 
+        [DisplayName("Editora")]
         public CompanyViewModel Company { get; set; }
+        [DisplayName("Autor")]
         public AuthorViewModel Author { get; set; }
+        [DisplayName("Linguagem")]
         public LanguageViewModel Language { get; set; }
         public bool New { get; set; }
+
+        [DisplayName("Resumo")]
+        public string Resume { get { return Description.Substring(0, 100); } }
     }
 }

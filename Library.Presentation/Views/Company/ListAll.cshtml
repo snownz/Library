@@ -1,5 +1,6 @@
 ﻿@model Library.Presentation.Models.Pagination.CompanyPagination
-
+@if (!ViewBag.Action)
+{
 <div class="portlet-title">
     <div class="caption caption-md">
         <i class="icon-bar-chart theme-font hide"></i>
@@ -18,6 +19,7 @@
 <p>
     <a href="#" data-type="New" data-controller="Company"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp; Incluir</a>
 </p>
+}
 <div id="partial-CompanyList">
     <table class="table">
         <tr>

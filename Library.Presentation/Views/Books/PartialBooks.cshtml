@@ -1,43 +1,50 @@
-﻿
+﻿@model Library.Presentation.Models.Pagination.BookPagination
+
 @{
     ViewBag.Title = "PartialBooks";
 }
+@if (!ViewBag.Action)
+{
 <h3>Livros</h3>
 <hr />
-<div class="row">    
-    <div class="col-sm-6 col-md-2">
-        <div class="thumbnail">
-            <img src="https://1112omb05daniel.files.wordpress.com/2011/12/livro-dani.jpg" alt="100%x200">
-            <div class="caption">
-                <h3>Book Name </h3>
-                <p> Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. </p>
-                <p>
-                    <a href="#" class="btn blue-stripe"><i class="fa fa-star"></i>&nbsp; 1994 - Dan Ariele</a>
-                </p>
+}
+<div class="row" id="partial-BookList">    
+    @foreach (var item in Model.Book.Dados)
+    {
+        <div class="col-sm-6 col-md-2">
+            <div class="thumbnail">
+                <img src="@item.Image" alt="100%x200">
+                <div class="caption">
+                    <h3>@item.Name</h3>
+                    <p>@item.Resume</p>
+                    <p>
+                        <spam class="span">@item.Year - @item.Author.Name</spam>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>  
+     }    
 </div>
 <hr />
 <div style="float:right">
     <ul class="pagination">
-
         <li><a href="#" class="item-name primary-link disabled">Page</a></li>
-        <li><a href="#" class="item-name primary-link" data-type="pagination" data-action="Enviadas" data-container="partial-mail-send" data-search="searchEnviadas" data-page="">0</a></li>
-        @*@foreach (var item in Model.Mensagens.Paginas)
+        @foreach (var item in Model.Book.Paginas)
             {
                 if (item.HasValue)
                 {
-                    <li><a href="#" class="item-name primary-link" data-type="pagination" data-action="Enviadas" data-container="partial-mail-send" data-search="searchEnviadas" data-page="@item">@item</a></li>
+                    <li><a href="#" class="item-name primary-link" data-type="pageList" data-action="PartialBooks" data-controller="Books" data-container="partial-BookList" data-search="txtBook" data-page="@item.Value">@item.Value</a></li>
                 }
-                else
-                {
-                    <li><a href="#">...</a></li>
-                }
+            else
+            {
+                <li><a href="#">...</a></li>
             }
-            <li><span>@Model.Mensagens.Dados.Count Registros de @Model.Mensagens.ColecaoQauntidade</span></li>*@
+        }
+        <li><span>@Model.Book.Dados.Count Registros de @Model.Book.ColecaoQauntidade</span></li>
     </ul>
 </div>
 <br />
 <br />
-
+<script>
+    configureBookButons();
+</script>

@@ -1,5 +1,6 @@
 ﻿@model Library.Presentation.Models.Pagination.BookPagination
-
+@if (!ViewBag.Action)
+{
 <div class="portlet-title">
     <div class="caption caption-md">
         <i class="icon-bar-chart theme-font hide"></i>
@@ -18,6 +19,7 @@
 <p>
     <a href="#" data-type="New" data-controller="Books"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp; Incluir</a>
 </p>
+}
 <div id="partial-BookList">
     <table class="table">
         <tr>
@@ -31,7 +33,13 @@
                 @Html.DisplayNameFor(model => model.Instance.Image)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Instance.Rate)
+                @Html.DisplayNameFor(model => model.Instance.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Instance.Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Instance.Company)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Instance.Number)
@@ -55,10 +63,16 @@
                     @Html.DisplayFor(modelItem => item.Special)
                 </td>
                 <td>
-                    <img src="data:image/png;base64,@item.Image" />
+                    <img style="height:100px; width:70px;" src="@item.Image" />
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Rate)
+                    @Html.DisplayFor(modelItem => item.Author.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Language.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Number)

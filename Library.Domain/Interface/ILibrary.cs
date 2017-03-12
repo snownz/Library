@@ -1,8 +1,5 @@
 ﻿using Library.Domain.Data;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Library.Domain.Interface
@@ -13,5 +10,6 @@ namespace Library.Domain.Interface
     public interface ILibrary : IDbCRUD<Book>
     {
         Task RateBook(int idBook, double rate);
+        ICollection<Book> GetSimilarity(Book model);
     }
 }

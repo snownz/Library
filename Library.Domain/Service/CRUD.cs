@@ -30,7 +30,7 @@ namespace Library.Domain.Service
 
         public virtual IQueryable<T> ListAll()
         {
-            return _repository.GetAll();
+            return _repository.GetAll().Where(x=>x.Active);
         }
 
         public virtual async Task New(T model)

@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Library.Tools;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Library.Domain.Data
 {
-    public class Book : ITable
+    public class Book : ITable, ISearch
     {
         public Book()
         {
@@ -22,17 +25,28 @@ namespace Library.Domain.Data
         [StringLength(80)]
         public virtual string Name { get; set; }
         [StringLength(4000)] 
-        public virtual string Descricao { get; set; }
+        public virtual string Description { get; set; }
+        [StringLength(4000)]
+        public virtual byte[] Image { get; set; }
 
-        public virtual int NumeroEdicao { get; set; }
-        public virtual int AnoEdicao { get; set; }
-        public virtual int NumeroPaginas { get; set; }
-        public virtual bool EdicaoEspecial { get; set; }
+        public virtual int Number { get; set; }
+        public virtual int Year { get; set; }
+        public virtual int PagesNumber { get; set; }
+        public virtual bool SpecialEdition { get; set; }
 
-        public Language Idioma { get; set; }
-        public PublishingCompany Editora { get; set; }
-        public Author Autor { get; set; }
+        public Language Language { get; set; }
+        public PublishingCompany Company { get; set; }
+        public Author Author { get; set; }
 
         public ICollection<BookRating> Rating { get; set; }
+
+        [NotMapped]
+        public string GetText
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

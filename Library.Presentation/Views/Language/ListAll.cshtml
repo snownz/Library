@@ -1,0 +1,67 @@
+﻿@model Library.Presentation.Models.Pagination.LanguagePagination
+
+<div class="portlet-title">
+    <div class="caption caption-md">
+        <i class="icon-bar-chart theme-font hide"></i>
+        <span class="caption-subject theme-font bold uppercase">Linguagens</span>
+        <span class="caption-helper hide">weekly stats...</span>
+    </div>
+    <div class="inputs">
+        <div class="portlet-input input-inline input-small ">
+            <div class="input-icon right">
+                <i class="icon-magnifier"></i>
+                <input type="text" name="txtLanguage" data-type="txtList" data-controller="Language" data-container="partial-languageList" class="form-control form-control-solid" placeholder="buscar...">
+            </div>
+        </div>
+    </div>   
+</div>
+<p>
+    <a href="#" data-type="New" data-controller="Language"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp; Incluir</a>
+</p>
+<div id="partial-languageList">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Instance.Description)
+            </th>
+            <th></th>
+        </tr>
+        @if (Model != null)
+        {
+            foreach (var item in Model.Language.Dados)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        <a href="#" data-type="Update" data-id="@item.Id" data-controller="Language">Editar</a> |
+                        <a href="#" data-type="Delete" data-id="@item.Id" data-controller="Language">Excluir</a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+    <hr />
+    <div style="float:right">
+        <ul class="pagination">
+            <li><a href="#" class="item-name primary-link disabled">Page</a></li>
+            @foreach (var item in Model.Language.Paginas)
+            {
+                if (item.HasValue)
+                {
+                    <li><a href="#" class="item-name primary-link" data-type="pageList" data-controller="Language" data-container="partial-languageList" data-search="txtLanguage" data-page="@item.Value">@item.Value</a></li>
+
+                    }
+                    else
+                    {
+                        <li><a href="#">...</a></li>
+                    }
+                }
+                <li><span>@Model.Language.Dados.Count Registros de @Model.Language.ColecaoQauntidade</span></li>
+        </ul>
+    </div>
+    <br />
+    <br />
+</div>

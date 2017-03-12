@@ -1,0 +1,100 @@
+﻿@model Library.Presentation.Models.Pagination.BookPagination
+
+<div class="portlet-title">
+    <div class="caption caption-md">
+        <i class="icon-bar-chart theme-font hide"></i>
+        <span class="caption-subject theme-font bold uppercase">Livros</span>
+        <span class="caption-helper hide">weekly stats...</span>
+    </div>
+    <div class="inputs">
+        <div class="portlet-input input-inline input-small ">
+            <div class="input-icon right">
+                <i class="icon-magnifier"></i>
+                <input type="text" name="txtBook" data-type="txtList" data-controller="Books" data-container="partial-BookList" class="form-control form-control-solid" placeholder="buscar...">
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    <a href="#" data-type="New" data-controller="Books"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp; Incluir</a>
+</p>
+<div id="partial-BookList">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Instance.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Instance.Special)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Instance.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Instance.Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Instance.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Instance.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Instance.PagesNumber)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Book.Dados)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Special)
+                </td>
+                <td>
+                    <img src="data:image/png;base64,@item.Image" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PagesNumber)
+                </td>
+                <td>
+                    <a href="#" data-type="Update" data-id="@item.ID" data-controller="Books">Editar</a> |
+                    <a href="#" data-type="Delete" data-id="@item.ID" data-controller="Books">Excluir</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <hr />
+    <div style="float:right">
+        <ul class="pagination">
+            <li><a href="#" class="item-name primary-link disabled">Page</a></li>
+            @foreach (var item in Model.Book.Paginas)
+            {
+                if (item.HasValue)
+                {
+                    <li><a href="#" class="item-name primary-link" data-type="pageList" data-controller="Books" data-container="partial-BookList" data-search="txtBook" data-page="@item.Value">@item.Value</a></li>
+                }
+                else
+                {
+                    <li><a href="#">...</a></li>
+                }
+            }
+            <li><span>@Model.Book.Dados.Count Registros de @Model.Book.ColecaoQauntidade</span></li>
+        </ul>
+    </div>
+    <br />
+    <br />
+</div>

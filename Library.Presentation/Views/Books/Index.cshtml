@@ -1,0 +1,23 @@
+﻿<div class="col-md-12 col-sm-12">
+    <!-- BEGIN PORTLET-->
+    <div class="portlet light" id="partial-special-books"></div>
+    <!-- END PORTLET-->
+</div>
+<div class="col-md-12 col-sm-12">
+    <!-- BEGIN PORTLET-->
+    <div class="portlet light" id="partial-books"></div>
+    <!-- END PORTLET-->
+</div>
+<div class="col-md-12 col-sm-12">
+    <div class="col-md-6 col-sm-12">
+        <div class="portlet light">
+            @{ Html.RenderPartial("_PluginNewBook");}
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <div class="portlet light">
+            @{ Html.RenderPartial("_PluginAdmin");}
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/specifc/SystemPages.js" type="text/javascript"></script>

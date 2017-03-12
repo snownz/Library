@@ -17,6 +17,7 @@ namespace Library.Domain.DbConfig
         public async Task DeleteAsync(T model)
         {
             Ctx.Entry(model).State = EntityState.Modified;
+            model.Active = false;
             await SaveAsync(model);
         }
         [DbValidator]

@@ -1,6 +1,8 @@
 ﻿using Library.Domain.Data;
 using Library.Domain.Interface;
 using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
 
 namespace Library.Domain.Service
 {
@@ -11,6 +13,11 @@ namespace Library.Domain.Service
         public BookService(IRepository<Book> _repository, IRepository<BookRating> _ratingRepository) : base(_repository)
         {
             this._ratingRepository = _ratingRepository;
+        }
+
+        public ICollection<Book> GetSimilarity(Book model)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task RateBook(int idBook, double rate)

@@ -1,6 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-using Moq;
 using Library.Domain.Interface;
 using Library.Presentation.Controllers;
 using Library.Presentation.Models;
@@ -27,9 +26,16 @@ namespace Library.Tests.Controllers
             AutoMapperConfig.RegisterMapping();
         }
 
+        private void _init()
+        {
+            _repo = new MockRepository<Author>();
+            _service = new AuthorService(_repo);
+        }
+
         [Test, Category("Unit"), TestCaseSource(typeof(AuthorSource), "AuthorNewSource")]
         public void TestNew(AuthorViewModel model, string test, string result)
         {
+            _init();
             AuthorController controler = new AuthorController(_service);
             controler.New(model).GetAwaiter().GetResult();
             var r = controler.Vizualise(1) as PartialViewResult;
@@ -37,8 +43,9 @@ namespace Library.Tests.Controllers
         }
 
         [Test, Category("Unit"), TestCaseSource(typeof(AuthorSource), "AuthorDeleteSource")]
-        public void TestDelete(AuthorViewModel model, int id, string test, string result)
+        public void TestDelete(AuthorViewModel model, int id, string test)
         {
+            _init();
             AuthorController controler = new AuthorController(_service);
             controler.New(model).GetAwaiter().GetResult();
             controler.Delete(id).GetAwaiter().GetResult();
@@ -56,10 +63,12 @@ namespace Library.Tests.Controllers
         [Test, Category("Unit"), TestCaseSource(typeof(AuthorSource), "AuthorUpdateSource")]
         public void TestUpdate(AuthorViewModel model, string name, string test, string result)
         {
+            _init();
             AuthorController controler = new AuthorController(_service);
             controler.New(model).GetAwaiter().GetResult();            
             var r = controler.Vizualise(1) as PartialViewResult;
             var _model = (r.Model as AuthorViewModel);
+            _model.Name = name;
             controler.Update(_model).GetAwaiter().GetResult();
             r = controler.Vizualise(1) as PartialViewResult;
             _model = (r.Model as AuthorViewModel);
@@ -69,6 +78,7 @@ namespace Library.Tests.Controllers
         [Test, Category("Unit"), TestCaseSource(typeof(AuthorSource), "AuthorGetAllSource")]
         public void TestListAll(ICollection<AuthorViewModel> model, string search, int page, string test, int result)
         {
+            _init();
             AuthorController controler = new AuthorController(_service);
             foreach (var item in model)
             {
@@ -82,6 +92,7 @@ namespace Library.Tests.Controllers
         [Test, Category("Unit"), TestCaseSource(typeof(AuthorSource), "AuthorViewSource")]
         public void TestView(AuthorViewModel model, string test)
         {
+            _init();
             AuthorController controler = new AuthorController(_service);
             controler.New(model).GetAwaiter().GetResult();
             var r = controler.Vizualise(1) as PartialViewResult;

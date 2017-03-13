@@ -35,10 +35,6 @@ namespace Library.Presentation.Controllers
             {
                 await _service.New(Mapper.Map<Language>(model));
             }
-            else
-            {
-                throw new Exception();
-            }
         }
         /// <summary>
         ///     Inativa um objeto no banco

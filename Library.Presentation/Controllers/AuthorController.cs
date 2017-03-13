@@ -13,7 +13,6 @@ namespace Library.Presentation.Controllers
     public class AuthorController : Controller
     {
         private readonly IAuthor _service;
-
         private readonly AuthorPagination author;
 
         public AuthorController(IAuthor _service)
@@ -35,10 +34,6 @@ namespace Library.Presentation.Controllers
             if (ModelState.IsValid)
             {
                 await _service.New(Mapper.Map<Author>(model));
-            }
-            else
-            {
-                throw new Exception();
             }
         }
         /// <summary>
